@@ -6,7 +6,7 @@ insert into CLIENT values(default);
 insert into CLIENT values(default);
 
 insert into PERSONNE_PHYSIQUE values (1,'cathy', 'cathou','1990-08-12');
-insert into CLIENT  (nom) values (2,'toto cathou','123456789');
+insert into PERSONNE_MORALE  (nom) values (2,'toto cathou','123456789');
 
 insert INTO ASSURANCE (dateSouscription,dateAnniversaire,datePrelevement) values ('2017-02-15','2017-02-10','2017-02-18');
 
