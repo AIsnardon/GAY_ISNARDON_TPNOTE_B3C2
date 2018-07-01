@@ -13,14 +13,17 @@ public class Client  {
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int idClient;
 
-@OneToMany(mappedBy="client", cascade = {CascadeType.ALL})
+@OneToMany(mappedBy="Client", cascade = {CascadeType.ALL})
 private List<CompteBancaire> CompteBancaires = new ArrayList<CompteBancaire>();
 
-@OneToMany(mappedBy="client", cascade = {CascadeType.ALL})
+@OneToMany(mappedBy="Client", cascade = {CascadeType.ALL})
 private List<Contact> Contacts = new ArrayList<Contact>();
 
-@OneToMany(mappedBy="client", cascade = {CascadeType.ALL})
+@OneToMany(mappedBy="Client", cascade = {CascadeType.ALL})
 private List<Assurance> Assurances = new ArrayList<Assurance>();
+
+@OneToMany(mappedBy="Client", cascade = {CascadeType.ALL})
+private List<Sinistre> Sinistres = new ArrayList<Sinistre>();
 
 public int getIdClient() {
 	return idClient;
