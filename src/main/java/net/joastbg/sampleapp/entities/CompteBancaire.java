@@ -18,6 +18,9 @@ private String proprietaire;
 @Column(name = "swift_code")
 private String swift_code;
 
+@Column
+private Boolean principal;
+
 @ManyToOne
 @JoinColumn(name="idClient")
 public Client client;
