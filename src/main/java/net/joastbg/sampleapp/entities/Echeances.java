@@ -13,6 +13,9 @@ public class Echeances implements Serializable{
 	 */
 	private static final long serialVersionUID = 1088262973262594032L;
 	
+	@Id
+	private Long idAssurance;
+	
 	@Column(name = "prix")
     private String prix;
 	

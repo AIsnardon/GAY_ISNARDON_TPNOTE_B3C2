@@ -17,11 +17,13 @@ import javax.persistence.*;
 public class Sinistre {
 
 @Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long idSinistre;
+	
 @ManyToOne
 @JoinColumn(name="idClient")
 public Client client;
 
-@Id
 @ManyToOne
 @JoinColumn(name="Assurance")
 public Assurance assurance;

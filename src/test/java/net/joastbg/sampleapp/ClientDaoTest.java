@@ -26,7 +26,7 @@ public class ClientDaoTest {
 
     @Before
     public void setUp() {
-
+    	
     }
 
     @Test

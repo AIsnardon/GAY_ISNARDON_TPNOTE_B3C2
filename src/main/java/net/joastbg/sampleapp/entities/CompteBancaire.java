@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class CompteBancaire {
 	
 @Id
-
 private String IBAN;
 
 @Column(name = "proprietaire")
