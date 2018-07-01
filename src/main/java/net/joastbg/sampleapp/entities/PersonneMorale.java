@@ -11,5 +11,28 @@ private String Siren;
 
 @Column
 private String Nom;
+
+public String getSiren() {
+	return Siren;
+}
+
+public void setSiren(String siren) {
+	Siren = siren;
+}
+
+public String getNom() {
+	return Nom;
+}
+
+public void setNom(String nom) {
+	Nom = nom;
+}
+
+@Override
+public String toString() {
+	return "PersonneMorale [Siren=" + Siren + ", Nom=" + Nom + "]";
+}
     
+
+
 }
