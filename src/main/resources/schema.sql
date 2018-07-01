@@ -5,7 +5,7 @@ CREATE TABLE COMPTE_BANCAIRE(
 	iban varchar(32),
 	proprietaire VARCHAR (50),
 	swift_code varchar(8),
-	principal tinyint(2),
+	principal boolean,
 	PRIMARY KEY (iban)
 );
  
