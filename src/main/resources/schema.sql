@@ -5,6 +5,7 @@ CREATE TABLE COMPTE_BANCAIRE(
 	iban varchar(32),
 	proprietaire VARCHAR (50),
 	swift_code varchar(8),
+	principal tinyint(2),
 	PRIMARY KEY (iban)
 );
  
@@ -19,7 +20,6 @@ CREATE TABLE CLIENT(
 CREATE TABLE COMPTE_CLIENT(
   idClient INTEGER ,
   iban varchar(20),
-  principal tinyint(2),
   PRIMARY KEY (idClient, iban),
 	FOREIGN KEY (idClient) REFERENCES CLIENT(idClient),
   FOREIGN KEY (iban) REFERENCES COMPTE_BANCAIRE(iban)
