@@ -13,6 +13,9 @@ private String IBAN;
 @Column
 private String BIC;
 
+@Column
+private Boolean principal;
+
 @ManyToOne
 @JoinColumn(name="idClient")
 public Client client;
