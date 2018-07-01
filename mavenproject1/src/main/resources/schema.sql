@@ -19,6 +19,7 @@ CREATE TABLE CLIENT(
 CREATE TABLE COMPTE_CLIENT(
   idClient INTEGER ,
   iban varchar(20),
+  principal tinyint(2),
   PRIMARY KEY (idClient, iban),
 	FOREIGN KEY (idClient) REFERENCES CLIENT(idClient),
   FOREIGN KEY (iban) REFERENCES COMPTE_BANCAIRE(iban)
