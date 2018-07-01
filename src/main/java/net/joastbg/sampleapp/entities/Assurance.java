@@ -2,6 +2,11 @@ package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+/**
+ * 
+ * @author Robin
+ *
+ */
 
 @Entity
 
