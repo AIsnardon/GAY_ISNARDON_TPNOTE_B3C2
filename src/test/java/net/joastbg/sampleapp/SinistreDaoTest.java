@@ -6,6 +6,8 @@
 package net.joastbg.sampleapp;
 
 import net.joastbg.sampleapp.dao.SinistreDao;
+import net.joastbg.sampleapp.entities.Assurance;
+import net.joastbg.sampleapp.entities.PersonnePhysique;
 import net.joastbg.sampleapp.entities.Sinistre;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,6 +15,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -23,14 +28,39 @@ public class SinistreDaoTest {
     
     @Autowired
     
+    /**
+     * Question 8 gestion des sinistres
+     */
+    
     Sinistre sinistre;
+    Assurance assurance;
     
     public SinistreDaoTest() {
     }
     
     @Before
     public void setUp() {
+    	 Date date = new Date(1992 - 1900, 02 - 1, 06);
+    	 Date dateSinistre = new Date(2018 - 1900, 07 - 1, 05);
         sinistre = new Sinistre();
+        
+        PersonnePhysique physique = new PersonnePhysique();
+        physique.setIdClient(2);
+        physique.setNom("Roger");
+        physique.setPrenom("Thomas");
+        physique.setDateNaissance(date);
+        
+        assurance.setIdAssurance((long) 1);
+        assurance.setDateAnniversaire(new Date(2016 - 1900, 07 - 1, 06));
+        assurance.setDatePrelevement(new Date(2016 - 1900, 07 - 1, 06));
+        assurance.setDateSouscription(new Date(2016 - 1900, 07 - 1, 06));
+        
+        sinistre.setIdSinistre((long) 1);
+        sinistre.setAssurance(assurance);
+        sinistre.setClient(physique);
+        sinistre.setDate(dateSinistre);
+        sinistre.setDescription("Le tp d'orm");
+        sinistre.setTitre("Aie");
     }
     
     /**
@@ -38,14 +68,9 @@ public class SinistreDaoTest {
      */
     @Test
     public void testPersist() {
-        System.out.println("persist");
-        Sinistre sinistre = null;
         SinistreDao instance = new SinistreDao();
-        String expResult = "";
         String result = instance.persist(sinistre);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(result);
     }
 
     /**
@@ -53,14 +78,10 @@ public class SinistreDaoTest {
      */
     @Test
     public void testFind() {
-        System.out.println("find");
-        String idsinistre = "";
         SinistreDao instance = new SinistreDao();
-        Sinistre expResult = null;
-        Sinistre result = instance.find(idsinistre);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        long idsinistre = sinistre.getIdSinistre();
+        Sinistre result = instance.find((int)idsinistre);
+        System.out.println(result);
     }
 
     /**
@@ -68,12 +89,9 @@ public class SinistreDaoTest {
      */
     @Test
     public void testDelete() {
-        System.out.println("delete");
         Sinistre sinistre = null;
         SinistreDao instance = new SinistreDao();
         instance.delete(sinistre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

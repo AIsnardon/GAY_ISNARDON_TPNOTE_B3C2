@@ -48,5 +48,13 @@ public class CompteDaoTest {
         Assert.assertEquals(compte,compteFound);
         compteDao.delete(compte);
     }
+    
+    //Question 3 définir compte principale
+    @Test
+    public void testDefPincipale(){
+    	
+    	compteDao.defCompte(compte);
+    	
+    }
 
 }

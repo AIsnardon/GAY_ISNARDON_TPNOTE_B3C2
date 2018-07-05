@@ -25,7 +25,7 @@ public class SinistreDao {
         return returnID;
     }
 
-    public Sinistre find(String idsinistre){
+    public Sinistre find(int idsinistre){
         Session session= sessionFactory.getCurrentSession();
         return (Sinistre) session.load(Sinistre.class, idsinistre);
     }

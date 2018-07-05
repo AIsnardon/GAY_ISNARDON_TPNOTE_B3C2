@@ -37,7 +37,15 @@ private String titre;
 @Column
 private String description;
 
-    public Client getClient() {
+    public Long getIdSinistre() {
+	return idSinistre;
+}
+
+public void setIdSinistre(Long idSinistre) {
+	this.idSinistre = idSinistre;
+}
+
+	public Client getClient() {
         return client;
     }
 

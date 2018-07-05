@@ -49,6 +49,7 @@ public class AssuranceDaoTest {
         physique.setPrenom("Thomas");
         physique.setDateNaissance(date);
         
+        //Question 6 ajout d'une echeance à une assurance
         Echeances echeance = new Echeances();
         
         echeance.setDateEmission("2016-02-06");
@@ -145,5 +146,17 @@ public class AssuranceDaoTest {
         System.out.println("Liste : " + l.toString() + "ok : " + ok);
         Assert.assertEquals(ok, !l.isEmpty());
     }
+    
+    
+    /**
+     * Question 6 ajout d'échéances
+     */
+    
+    @Test
+    public void testAddEcheance() {
+        Long id = assuranceDao.addEcheance(echeance);
+        Assert.assertTrue(id != null);
+    }
+    
 
 }

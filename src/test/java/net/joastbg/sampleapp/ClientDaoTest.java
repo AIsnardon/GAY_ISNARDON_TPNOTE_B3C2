@@ -73,6 +73,7 @@ public class ClientDaoTest {
     	
     }
 
+    //Question 1 ajout des client selon le nouveau modèle
     @Test
     public void testPersist(){
     	 Long id = clientDao.persist(client);
@@ -98,12 +99,15 @@ public class ClientDaoTest {
     	clientDao.deleteMorale(morale);
     }
 
+    //Question 2 ajout de compte à un utilisateur
     @Test
     public void testInsertComtpe(){
     	
     	String data = clientDao.insertCompte(physique, compte);
     	System.out.println(data);
     }
+    
+
     
 
 }

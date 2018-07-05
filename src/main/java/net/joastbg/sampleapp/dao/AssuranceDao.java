@@ -75,4 +75,11 @@ public class AssuranceDao {
         Session session = sessionFactory.getCurrentSession();
         session.delete(assurance);
     }
+    
+    
+    public long addEcheance(Echeances echeances) {
+    	Session session = sessionFactory.getCurrentSession();
+    	long id = (long) session.save(echeances);
+        return id;
+    }
 }

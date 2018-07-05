@@ -54,7 +54,7 @@ public class ContactDaoTest {
 
 
     /**
-     * Test of persist method, of class ContactDao.
+     * Question 4 gestion des contacts
      */
     @Test
     public void testPersist() {

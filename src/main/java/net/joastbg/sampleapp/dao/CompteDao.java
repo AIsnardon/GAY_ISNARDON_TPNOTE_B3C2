@@ -32,4 +32,15 @@ public class CompteDao {
         Session session= sessionFactory.getCurrentSession();
         session.delete(compteBancaire);
     }
+    
+    
+    
+    public void defCompte(CompteBancaire compte) {
+    	Session session = sessionFactory.getCurrentSession();
+    	String id = compte.getIBAN();
+    	
+    	String sql = "Update compte_bancaire set principal = true where iban = '" + id + "'";
+    	session.createQuery(sql);
+    	
+    }
 }
