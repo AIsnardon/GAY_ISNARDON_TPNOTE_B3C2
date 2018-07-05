@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,15 +28,30 @@ public class ClientDao {
         return id;
     }
     
-    public Long persistPhysique(PersonnePhysique client){
+    public int persistPhysique(PersonnePhysique client){
         Session session = sessionFactory.getCurrentSession();
-        Long returnID = (Long) session.save(client);
+        int returnID =client.getIdClient();
+        
+        String sql = "insert into Personne_Physique(idClient,nom,prenom,dateAnniversaire)" + 
+        "SELECT idClient,nom,prenom,dateAnniversaire from Personne_Physique";
+        
+        session.createQuery(sql);
+        
         return returnID;
     }
     
-    public Long persistMorale(PersonneMorale client){
+    public int persistMorale(PersonneMorale client){
         Session session = sessionFactory.getCurrentSession();
-        Long returnID = (Long) session.save(client);
+        
+        int returnID =client.getIdClient();
+        
+        String sql = "insert into PERSONNE_MORALE(idClient,nom,Siren)" + 
+        "SELECT idClient,nom,Siren from PERSONNE_MORALE";
+        
+        session.createQuery(sql);
+        
+        
+        
         return returnID;
     }
     

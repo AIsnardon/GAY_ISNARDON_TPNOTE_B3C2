@@ -3,7 +3,7 @@ package net.joastbg.sampleapp.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="PersonneMorale")
+@Table(name="PERSONNE_MORALE")
 public class PersonneMorale extends Client {
     
 @Column

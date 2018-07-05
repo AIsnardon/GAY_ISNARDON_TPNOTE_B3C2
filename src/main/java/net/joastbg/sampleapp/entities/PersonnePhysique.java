@@ -4,7 +4,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="PersonnePhysique")
+@Table(name="Personne_Physique")
 public class PersonnePhysique extends Client {
     
 @Column

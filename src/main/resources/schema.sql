@@ -21,9 +21,8 @@ CREATE TABLE COMPTE_CLIENT(
   idClient INTEGER ,
   iban varchar(20),
   PRIMARY KEY (idClient, iban),
-	FOREIGN KEY (idClient) REFERENCES CLIENT(idClient) ON DELETE CASCADE,
-  FOREIGN KEY (iban) REFERENCES COMPTE_BANCAIRE(iban) ON DELETE CASCADE,
- 
+	FOREIGN KEY (idClient) REFERENCES CLIENT(idClient),
+  FOREIGN KEY (iban) REFERENCES COMPTE_BANCAIRE(iban)
 );
 
 
@@ -39,8 +38,8 @@ create TABLE ASSURANCE(
     idClient INTEGER ,
     idAssurance INTEGER ,
     PRIMARY KEY (idClient, idAssurance),
-    FOREIGN KEY (idClient) REFERENCES CLIENT(idClient) ON DELETE CASCADE,
-    FOREIGN KEY (idAssurance) REFERENCES ASSURANCE(idAssurance) ON DELETE CASCADE
+    FOREIGN KEY (idClient) REFERENCES CLIENT(idClient),
+    FOREIGN KEY (idAssurance) REFERENCES ASSURANCE(idAssurance)
   );
   
   create TABLE CONTACT(
@@ -56,7 +55,7 @@ create TABLE PERSONNE_PHYSIQUE(
 	prenom VARCHAR(50),
 	dateNaissance date,
 	primary key (idClient),
-	foreign key (idClient) REFERENCES CLIENT(idClient) ON DELETE CASCADE
+	foreign key (idClient) REFERENCES CLIENT(idClient)
 );
 
 create table PERSONNE_MORALE(
@@ -64,7 +63,7 @@ create table PERSONNE_MORALE(
 	nom VARCHAR(50),
 	siren varchar(10),
 	primary key (idClient),
-	foreign key (idClient) REFERENCES CLIENT(idClient) ON DELETE CASCADE
+	foreign key (idClient) REFERENCES CLIENT(idClient)
 );
 
 
@@ -73,7 +72,7 @@ create table ASSURANCE_AUTO(
 	immatriculation VARCHAR(15),
 	bonus_malus decimal(4,2),
 	primary key (idAssurance),
-	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance) ON DELETE CASCADE
+	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance)
 );
 
 create table ASSURANCE_HABITATION(
@@ -81,7 +80,7 @@ idAssurance INTEGER,
 adresse VARCHAR(255),
 valeurConverture INTEGER,
 primary key (idAssurance),
-	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance) ON DELETE CASCADE
+	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance)
 );
 
 create table ECHEANCES(
@@ -91,7 +90,7 @@ dateEmission date,
 datePaiement date,
 dateEmissionFacture date,
 primary key (idAssurance),
-	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance) ON DELETE CASCADE
+	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance)
 );
 
 
@@ -103,6 +102,6 @@ date date,
 titre VARCHAR(20),
 description varchar(255),
 primary key (idSinistre),
-	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance) ON DELETE CASCADE,
-foreign key (idClient) REFERENCES CLIENT(idClient) ON DELETE CASCADE
+	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance),
+foreign key (idClient) REFERENCES CLIENT(idClient)
 );
