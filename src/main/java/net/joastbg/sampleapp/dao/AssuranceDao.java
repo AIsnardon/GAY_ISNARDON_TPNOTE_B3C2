@@ -14,39 +14,50 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class AssuranceDao {
-	 @Autowired
-	    SessionFactory sessionFactory;
 
-	    public Long persist(Assurance assurance){
-	        Session session = sessionFactory.getCurrentSession();
-	        Long returnID = (Long) session.save(assurance);
-	        return returnID;
-	    }
+    @Autowired
+    SessionFactory sessionFactory;
 
-	    public List<Assurance> findAll(){
-	        Session session = sessionFactory.getCurrentSession();
-	        return  session.createQuery("from Assurance").list();
-	    }
-	    
-	    public List<AssuranceAuto> findAllAuto(){
-	        Session session = sessionFactory.getCurrentSession();
-	        return  session.createQuery("from ASSURANCE_AUTO").list();
-	    }
-	    
-	    public List<AssuranceHabitat> findAllHabitat(){
-	        Session session = sessionFactory.getCurrentSession();
-	        return  session.createQuery("from ASSURANCE_HABITATION").list();
-	    }
-	    
-	    public Assurance find(int idAssurance){
-	        Session session= sessionFactory.getCurrentSession();
-	        return (Assurance) session.load(Assurance.class, idAssurance);
-	    }
-            
-            public void DeleteAnnDay(int idAssurance)
-            {
-                Session session= sessionFactory.getCurrentSession();
-	        Query query = session.createQuery("Delete Cascade Assurance where idAssurance = " + idAssurance + " and dateAnniversaire = CURDATE()");
-                query.executeUpdate();
-            }
+    public Long persist(Assurance assurance) {
+        Session session = sessionFactory.getCurrentSession();
+        Long returnID = (Long) session.save(assurance);
+        return returnID;
+    }
+
+    public List<Assurance> findAll() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Assurance").list();
+    }
+
+    public List<AssuranceAuto> findAllAuto() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from ASSURANCE_AUTO").list();
+    }
+
+    public List<AssuranceHabitat> findAllHabitat() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from ASSURANCE_HABITATION").list();
+    }
+
+    public Assurance find(Long idAssurance) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Assurance) session.load(Assurance.class, idAssurance);
+    }
+
+    public boolean DeleteAnnDay(int idAssurance, double prix) {
+        boolean ok = false;
+        Session session = sessionFactory.getCurrentSession();
+        List l = session.createQuery("select idAssurance from assurance where dateAnniversaire = CURDATE() and idAssurance = " + idAssurance + ";").list();
+        if (!l.isEmpty()) {
+            Query query = session.createQuery("Insert into echeances(idassurance, prix, dateemission, datepaiement, dateemissionfacture) values( " + idAssurance + ", " + prix + ", CURDATE(), DURDATE(), CURDATE())");
+            query.executeUpdate();
+            ok = true;
+        }
+        return ok;
+    }
+
+    public void delete(Assurance assurance) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(assurance);
+    }
 }
