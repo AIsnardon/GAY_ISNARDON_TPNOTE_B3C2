@@ -17,7 +17,7 @@ public class AssuranceHabitat extends Assurance implements Serializable {
     private String adresse;
 	
 	@Column(name = "valeurConverture")
-    private String valeurConverture;
+    private int valeurConverture;
 	
 	 @OneToOne
 	   private Assurance assurance;
@@ -30,11 +30,11 @@ public class AssuranceHabitat extends Assurance implements Serializable {
 		this.adresse = adresse;
 	}
 
-	public String getValeurConverture() {
+	public int getValeurConverture() {
 		return valeurConverture;
 	}
 
-	public void setValeurConverture(String valeurConverture) {
+	public void setValeurConverture(int valeurConverture) {
 		this.valeurConverture = valeurConverture;
 	}
 
@@ -49,7 +49,7 @@ public class AssuranceHabitat extends Assurance implements Serializable {
 	@Override
 	public String toString() {
 		return "AssuranceHabitat [adresse=" + adresse + ", valeurConverture=" + valeurConverture + ", assurance="
-				+ assurance + "]";
+				+ super.toString();
 	}
 	
 	 
