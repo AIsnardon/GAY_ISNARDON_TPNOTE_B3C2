@@ -76,7 +76,6 @@ public class ClientDaoTest {
     @Test
     public void testPersist(){
     	 Long id = clientDao.persist(client);
-    	 
     	 Assert.assertTrue(id != null);
     } 
     
