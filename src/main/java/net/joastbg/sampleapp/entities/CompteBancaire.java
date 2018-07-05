@@ -20,9 +20,21 @@ private String swift_code;
 @Column
 private Boolean principal;
 
+
+
 @ManyToOne
 @JoinColumn(name="idClient")
 public Client client;
+
+
+
+public Boolean getPrincipal() {
+	return principal;
+}
+
+public void setPrincipal(Boolean principal) {
+	this.principal = principal;
+}
 
 public String getIBAN() {
 	return IBAN;

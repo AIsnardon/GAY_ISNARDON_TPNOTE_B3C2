@@ -32,8 +32,8 @@ public class ClientDao {
         Session session = sessionFactory.getCurrentSession();
         int returnID =client.getIdClient();
         
-        String sql = "insert into Personne_Physique(idClient,nom,prenom,dateAnniversaire)" + 
-        "SELECT idClient,nom,prenom,dateAnniversaire from Personne_Physique";
+        String sql = "insert into PERSONNE_PHYSIQUE(idClient,nom,prenom,dateNaissance)" + 
+        "SELECT idClient,nom,prenom,dateNaissance from PERSONNE_PHYSIQUE";
         
         session.createQuery(sql);
         
@@ -44,25 +44,29 @@ public class ClientDao {
         Session session = sessionFactory.getCurrentSession();
         
         int returnID =client.getIdClient();
+        String nom = client.getNom();
+        String siren = client.getSiren();
         
-        String sql = "insert into PERSONNE_MORALE(idClient,nom,Siren)" + 
-        "SELECT idClient,nom,Siren from PERSONNE_MORALE";
+        String sql = "insert into PERSONNE_MORALE(idClient,nom,siren) " + 
+        "SELECT idClient, nom,siren from PERSONNE_MORALE";
+        
+        System.out.println(sql);
         
         session.createQuery(sql);
-        
-        
         
         return returnID;
     }
     
     public void deletePhysique(PersonnePhysique client){
         Session session= sessionFactory.getCurrentSession();
-        session.delete(client);
+        String sql = "delete from PERSONNE_PHYSIQUE where idClient = " + client.getIdClient();
+        session.createQuery(sql);
     }
     
     public void deleteMorale(PersonneMorale client){
         Session session= sessionFactory.getCurrentSession();
-        session.delete(client);
+        String sql = "delete from PERSONNE_MORALE where idClient = " + client.getIdClient();
+        session.createQuery(sql);
     }
 
     public List<Client> findAll(){
@@ -79,4 +83,22 @@ public class ClientDao {
         Session session = sessionFactory.getCurrentSession();
         return  session.createQuery("from Personne_morale").list();
     }
+    
+    public String insertCompte(Client client, CompteBancaire compte) {
+    	
+    	Session session = sessionFactory.getCurrentSession();
+        
+        int returnID =client.getIdClient();
+        
+        String sql = "insert into COMPTE_BANCAIRE(iban,proprietaire,swift_code,principal,idClient) " + 
+        "SELECT iban,proprietaire,swift_code,principal,idClient from COMPTE_BANCAIRE";
+        
+        System.out.println(sql);
+        
+        session.createQuery(sql);
+        
+        return returnID + " : " + compte.getIBAN();
+        
+    }
+    
 }

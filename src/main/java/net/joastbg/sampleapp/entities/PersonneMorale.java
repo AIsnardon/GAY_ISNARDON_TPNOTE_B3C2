@@ -6,10 +6,10 @@ import javax.persistence.*;
 @Table(name="PERSONNE_MORALE")
 public class PersonneMorale extends Client {
     
-@Column
+@Column(name = "siren")
 private String Siren;
 
-@Column
+@Column(name = "nom")
 private String Nom;
 
 public String getSiren() {

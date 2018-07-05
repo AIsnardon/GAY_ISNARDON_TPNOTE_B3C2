@@ -4,16 +4,16 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Personne_Physique")
+@Table(name="PERSONNE_PHYSIQUE")
 public class PersonnePhysique extends Client {
     
-@Column
+@Column(name="nom")
 private String Nom;
 
-@Column
+@Column(name="prenom")
 private String Prenom;
 
-@Column
+@Column(name="dateNaissance")
 private Date DateNaissance;
 
 public String getNom() {
