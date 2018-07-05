@@ -1,6 +1,7 @@
 package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -18,13 +19,13 @@ public abstract class Assurance implements Serializable {
 	private Long idAssurance;
 	
 	@Column(name = "dateSouscription")
-    private String dateSouscription;
+    private Date dateSouscription;
 	
 	@Column(name = "dateAnniversaire")
-    private String dateAnniversaire;
+    private Date dateAnniversaire;
 	
 	@Column(name = "datePrelevement")
-    private String datePrelevement;
+    private Date datePrelevement;
 	
 	@ManyToOne
 	   @JoinColumn(name = "idClient")
@@ -44,8 +45,7 @@ public abstract class Assurance implements Serializable {
 	public String toString() {
 		return "Assurance [idAssurance=" + idAssurance + ", dateSouscription=" + dateSouscription
 				+ ", dateAnniversaire=" + dateAnniversaire + ", datePrelevement=" + datePrelevement + ", client="
-				+ client + ", assuranceAuto=" + assuranceAuto + ", assuranceHabitat=" + assuranceHabitat
-				+ ", echeances=" + echeances + "]";
+				+ client + ", echeances=" + echeances + "]";
 	}
 
 	public Echeances getEcheances() {
@@ -89,27 +89,27 @@ public abstract class Assurance implements Serializable {
 	}
 
 
-	public String getDateSouscription() {
+	public Date getDateSouscription() {
 		return dateSouscription;
 	}
 
-	public void setDateSouscription(String dateSouscription) {
+	public void setDateSouscription(Date dateSouscription) {
 		this.dateSouscription = dateSouscription;
 	}
 
-	public String getDateAnniversaire() {
+	public Date getDateAnniversaire() {
 		return dateAnniversaire;
 	}
 
-	public void setDateAnniversaire(String dateAnniversaire) {
+	public void setDateAnniversaire(Date dateAnniversaire) {
 		this.dateAnniversaire = dateAnniversaire;
 	}
 
-	public String getDatePrelevement() {
+	public Date getDatePrelevement() {
 		return datePrelevement;
 	}
 
-	public void setDatePrelevement(String datePrelevement) {
+	public void setDatePrelevement(Date datePrelevement) {
 		this.datePrelevement = datePrelevement;
 	}
 
