@@ -14,7 +14,7 @@ public class Echeances implements Serializable{
 	private static final long serialVersionUID = 1088262973262594032L;
 	
 	@Id
-	private Long idAssurance;
+	private Long idEcheance;
 	
 	@Column(name = "prix")
     private String prix;
@@ -28,8 +28,16 @@ public class Echeances implements Serializable{
 	@Column(name = "dateEmissionFacture")
     private String dateEmissionFacture;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "echeances")
 	   private Assurance assurance;
+
+	public Long getIdEcheance() {
+		return idEcheance;
+	}
+
+	public void setIdEcheance(Long idEcheance) {
+		this.idEcheance = idEcheance;
+	}
 
 	public String getPrix() {
 		return prix;
@@ -63,18 +71,11 @@ public class Echeances implements Serializable{
 		this.dateEmissionFacture = dateEmissionFacture;
 	}
 
-	public Assurance getAssurance() {
-		return assurance;
-	}
-
-	public void setAssurance(Assurance assurance) {
-		this.assurance = assurance;
-	}
 
 	@Override
 	public String toString() {
 		return "Echeances [prix=" + prix + ", dateEmission=" + dateEmission + ", datePaiement=" + datePaiement
-				+ ", dateEmissionFacture=" + dateEmissionFacture + ", assurance=" + assurance + "]";
+				+ ", dateEmissionFacture=" + dateEmissionFacture + "]";
 	}
 	
 	

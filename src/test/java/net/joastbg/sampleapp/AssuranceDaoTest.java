@@ -9,6 +9,7 @@ import net.joastbg.sampleapp.entities.AssuranceAuto;
 import net.joastbg.sampleapp.entities.AssuranceHabitat;
 import net.joastbg.sampleapp.entities.Client;
 import net.joastbg.sampleapp.entities.CompteBancaire;
+import net.joastbg.sampleapp.entities.Echeances;
 import net.joastbg.sampleapp.entities.PersonnePhysique;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,10 +34,10 @@ public class AssuranceDaoTest {
     List<AssuranceAuto> lauto;
     List<AssuranceHabitat> lhabitat;
     List<Assurance> lassurance;
+    Echeances echeance;
 
     @Before
     public void setUp() throws Exception {
-
         Date date = new Date(1992 - 1900, 02 - 1, 06);
 
         Client client = new Client();
@@ -47,7 +48,16 @@ public class AssuranceDaoTest {
         physique.setNom("Roger");
         physique.setPrenom("Thomas");
         physique.setDateNaissance(date);
+        
+        Echeances echeance = new Echeances();
+        
+        echeance.setDateEmission("2016-02-06");
+        echeance.setDateEmissionFacture("2016-06-12");
+        echeance.setDatePaiement("2018-06-15");
+        echeance.setPrix("150");
+        echeance.setIdEcheance((long) 5);
 
+        //Assurance habitation
         habitat = new AssuranceHabitat();
         habitat.setIdAssurance((long) 1);
         habitat.setClient(physique);
@@ -56,9 +66,10 @@ public class AssuranceDaoTest {
         habitat.setDateSouscription(new Date(2016 - 1900, 07 - 1, 06));
         habitat.setAdresse("une adresse");
         habitat.setValeurConverture(1);
-        habitat.setEcheances(null);
+        habitat.setEcheances(echeance);
         System.out.println(habitat.toString());
 
+        //Assurance auto
         auto = new AssuranceAuto();
         auto.setIdAssurance((long) 2);
         auto.setClient(physique);
@@ -67,19 +78,30 @@ public class AssuranceDaoTest {
         auto.setDateSouscription(new Date(2016 - 1900, 07 - 1, 06));
         auto.setBonus_malus(0.5);
         auto.setImmatriculation("LS-347-AZ");
+        auto.setEcheances(echeance);
         System.out.println(auto.toString());
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
-
+//Question 5 gestion des assurances
     @Test
     public void testPersist() {
         Long idhabitat = assuranceDao.persist(assurance);
-        Long idauto = assuranceDao.persist(assurance);
-        Assert.assertTrue((idhabitat != null && idauto != null));
-        assuranceDao.delete(assurance);
+        Assert.assertTrue((idhabitat != null));
+        //assuranceDao.delete(assurance);
+    }
+    
+    @Test
+    public void testPersistAuto() {
+        Long idAuto = assuranceDao.persistAuto(auto);
+        Assert.assertTrue(idAuto != null);
+        assuranceDao.delete(auto);
+    }
+    
+    @Test
+    public void testPersistHabitat() {
+    	Long idHabitat = assuranceDao.persistHabitat(habitat);
+        Assert.assertTrue(idHabitat != null);
+        assuranceDao.delete(auto);
     }
 
     @Test
@@ -111,11 +133,10 @@ public class AssuranceDaoTest {
     }
 
     /**
-     * Test of DeleteAnnDay method, of class AssuranceDao.
+     * Question 9 Résilier contrat a la date d'anniversaire
      */
     @Test
     public void testDeleteAnnDay() {
-        System.out.println("DeleteAnnDay");
         int idAssurance = 0;
         AssuranceDao instance = new AssuranceDao();
         boolean ok = instance.DeleteAnnDay(idAssurance, 10);

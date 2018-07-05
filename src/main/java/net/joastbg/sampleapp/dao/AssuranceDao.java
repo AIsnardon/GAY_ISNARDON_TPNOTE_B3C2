@@ -19,9 +19,24 @@ public class AssuranceDao {
     SessionFactory sessionFactory;
 
     public Long persist(Assurance assurance) {
-        Session session = sessionFactory.getCurrentSession();
-        Long returnID = (Long) session.save(assurance);
-        return returnID;
+    	Session session = sessionFactory.getCurrentSession();
+        long id = (long) session.save(assurance);
+        return id;
+    	
+    }
+    
+    public Long persistAuto(AssuranceAuto assurance) {
+    	Session session = sessionFactory.getCurrentSession();
+    	long id = (long) session.save(assurance);
+        return id;
+    	
+    }
+    
+    public Long persistHabitat(AssuranceHabitat assurance) {
+    	Session session = sessionFactory.getCurrentSession();
+    	long id = (long) session.save(assurance);
+        return id;
+    	
     }
 
     public List<Assurance> findAll() {

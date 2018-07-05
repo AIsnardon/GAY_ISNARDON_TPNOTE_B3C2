@@ -7,6 +7,15 @@ CREATE TABLE CLIENT(
 	primary key (idClient)
 );
 
+create table ECHEANCES(
+idEcheance INTEGER,
+prix integer,
+dateEmission date,
+datePaiement date,
+dateEmissionFacture date,
+primary key (idEcheance)
+);
+
 
 CREATE TABLE COMPTE_BANCAIRE(
 	iban varchar(32),
@@ -23,7 +32,9 @@ create TABLE ASSURANCE(
     dateSouscription date,
 	dateAnniversaire date,
 	datePrelevement date,
-    PRIMARY KEY (idAssurance)
+	idEcheance integer,
+    PRIMARY KEY (idAssurance),
+	foreign key (idEcheance) REFERENCES ECHEANCES(idEcheance)
   );
 
   create TABLE CLIENT_ASSURANCE(
@@ -75,15 +86,7 @@ primary key (idAssurance),
 	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance)
 );
 
-create table ECHEANCES(
-idAssurance INTEGER,
-prix integer,
-dateEmission date,
-datePaiement date,
-dateEmissionFacture date,
-primary key (idAssurance),
-	foreign key (idAssurance) REFERENCES ASSURANCE(idAssurance)
-);
+
 
 
 create table sinistre(

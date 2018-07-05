@@ -37,7 +37,7 @@ public abstract class Assurance implements Serializable {
 	 @OneToOne(mappedBy = "assurance")
 	   private AssuranceHabitat assuranceHabitat;
 	 
-	 @OneToOne(mappedBy = "assurance")
+	 @OneToOne
 	   private Echeances echeances;
 	 
 	 
