@@ -24,9 +24,9 @@ public class ContactDao {
         return returnID;
     }
 
-    public Contact find(String type){
+    public Contact find(String idContact){
         Session session= sessionFactory.getCurrentSession();
-        return (Contact) session.load(Contact.class, type);
+        return (Contact) session.load(Contact.class, idContact);
     }
 
     public void delete(Contact contact){
