@@ -92,15 +92,12 @@ public class AssuranceDaoTest {
 
     @Test
     public void testFindAllAuto() {
-        
-        Long id = assuranceDao.persist(auto);
         List<AssuranceAuto> assuranceFound = assuranceDao.findAllAuto();
         Assert.assertNotNull(assuranceFound);
     }
 
     @Test
     public void testFindAllHabitat() {
-        Long id = assuranceDao.persist(habitat);
         List<AssuranceHabitat> assuranceFound = assuranceDao.findAllHabitat();
         Assert.assertNotNull(assuranceFound);
     }
