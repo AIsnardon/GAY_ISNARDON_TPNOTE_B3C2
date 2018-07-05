@@ -3,6 +3,7 @@ package net.joastbg.sampleapp.dao;
 import net.joastbg.sampleapp.entities.*;
 
 import java.util.List;
+import org.hibernate.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,4 +42,11 @@ public class AssuranceDao {
 	        Session session= sessionFactory.getCurrentSession();
 	        return (Assurance) session.load(Assurance.class, idAssurance);
 	    }
+            
+            public void DeleteAnnDay(int idAssurance)
+            {
+                Session session= sessionFactory.getCurrentSession();
+	        Query query = session.createQuery("Delete Cascade Assurance where idAssurance = " + idAssurance + " and dateAnniversaire = CURDATE()");
+                query.executeUpdate();
+            }
 }
