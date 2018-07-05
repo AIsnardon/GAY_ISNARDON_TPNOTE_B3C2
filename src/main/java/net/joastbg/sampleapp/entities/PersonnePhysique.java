@@ -42,6 +42,7 @@ public void setDateNaissance(Date dateNaissance) {
 
 @Override
 public String toString() {
+	
 	return "PersonnePhysique [Nom=" + Nom + ", Prenom=" + Prenom + ", DateNaissance=" + DateNaissance + "]";
 }
     
